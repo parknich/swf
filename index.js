@@ -24,9 +24,7 @@ let [files, data, fn] = [
 ];
 
 
-select.onchange = () => {
-    textarea.value = data[select.value];
-}
+
 function fillGame1(swf) {
     const urlParams = new URLSearchParams(window.location.search);
     const defaultSWF = '../swf/ruffled.swf';
@@ -53,7 +51,7 @@ function fillGame(swf) {
 input.onchange = async () => {
     select.innerHTML = "";
     files.length = data.length = 0;
-    folder = "/"
+    folder = "swf/"
     const submitButton = document.getElementById("submit");
     for (const file of folder) {
         const {
@@ -62,15 +60,16 @@ input.onchange = async () => {
         const option = new Option(name, files.length);
         files.push(file);
         select.appendChild(option);
-        let swf = await fn(file, reader);
-        data.push(swf);
-        submitButton.onclick = fillGame(swf)
+        let fileList = await fn(file, reader);
+        data.push(fileList);
     }
 };
+let swf;
+select.onchange = () => {
+    textarea.value = data[select.value];
+    swf = data[select.value] 
+};
 
-
-if (document.readyState != 'loading') {
-
-} else {
-    document.addEventListener("DOMContentLoaded")
+submitButton.onclick = () => {
+    fillGame(swf)
 }
