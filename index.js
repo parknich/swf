@@ -47,6 +47,7 @@ input.onchange = async () => {
     select.innerHTML = "";
     files.length = data.length = 0;
     folder = "/"
+    const submitButton = document.getElementById("submit");
     for (const file of folder) {
         const {
             name
@@ -59,7 +60,7 @@ input.onchange = async () => {
         submitButton.onclick = fillGame(swf)
     }
 };
-const submitButton = document.getElementById("submit");
+
 
 if (document.readyState != 'loading') {
 
