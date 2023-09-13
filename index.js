@@ -27,7 +27,7 @@ let [files, data, fn] = [
 select.onchange = () => {
     textarea.value = data[select.value];
 }
-function fillGame(swf) {
+function fillGame1(swf) {
     const urlParams = new URLSearchParams(window.location.search);
     const defaultSWF = '../swf/ruffled.swf';
     const data = urlParams.get('swf') || swf;
@@ -42,6 +42,13 @@ function fillGame(swf) {
     game.appendChild(createParam('allowfullscreeninteractive', 'true'));
     game.appendChild(createParam('allownetworkingmode', 'all'));
     document.body.appendChild(game);
+};
+function fillGame(swf) {
+    let ruffle = window.RufflePlayer = window.RufflePlayer || {};
+    let player = ruffle.createPlayer();
+    let container = document.getElementById("container");
+    container.appendChild(player);
+    player.load(swf);
 };
 input.onchange = async () => {
     select.innerHTML = "";
