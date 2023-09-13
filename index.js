@@ -1,3 +1,4 @@
+
 function createParam(name, value) {
     const param = document.createElement('param');
     param.setAttribute('name', name);
@@ -55,12 +56,11 @@ input.onchange = async () => {
         select.appendChild(option);
         let swf = await fn(file, reader);
         data.push(swf);
-        fillGame(swf);
-        function fillgame2() {
-            fillgame(swf)
-        }
+        submitButton.onclick = fillGame(swf)
     }
 };
+const submitButton = document.getElementById("submit");
+
 if (document.readyState != 'loading') {
 
 } else {
