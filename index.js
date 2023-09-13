@@ -51,7 +51,7 @@ function fillGame(swf) {
 input.onchange = async () => {
     select.innerHTML = "";
     files.length = data.length = 0;
-    folder = "swf/"
+    folder = "/swf/"
     const submitButton = document.getElementById("submit");
     for (const file of folder) {
         const {
