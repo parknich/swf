@@ -13,6 +13,9 @@ console.log("running JS")
 const fileList = [];
 
 for (let file of fileData) {
+    console.log(file.name)
+    console.log(file.path)
+    console.log(fileList)
     fileList.push(file.path);
     option = new Option(file.name, file.path);
     selectBox.appendChild(option);
