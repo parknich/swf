@@ -8,7 +8,7 @@ const submitButton = document.getElementById("submit");
 const selectBox = document.getElementById("selectBox");
 const textarea = document.getElementById("textareaBox");
 statusBox.value = "running JS";
-async => {
+async() => {
     selectBox.value = "select game";
     const fileList = [];
     for (let file of fileData) {
