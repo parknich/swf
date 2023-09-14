@@ -8,9 +8,9 @@ const submitButton = document.getElementById("submit");
 const selectBox = document.getElementById("selectBox");
 const textarea = document.getElementById("textareaBox");
 statusBox.value = "running JS";
+const fileList = [];
 function populateSelect() {
     selectBox.value = "select game";
-    const fileList = [];
     for (let file of fileData) {
         fileList.push(file.path);
         option = new Option(file.name, file.path);
