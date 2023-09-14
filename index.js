@@ -4,7 +4,8 @@ const response = await fetch(
 const fileData = await response.json();
 const statusBox = document.getElementById("status");
 const submitButton = document.getElementById("submit");
-const selectBox = document.getElementById("selectBox")
+const selectBox = document.getElementById("selectBox");
+const textarea = document.getElementById("textareaBox");
 statusBox.innerHTML = "running JS";
 
 
@@ -14,8 +15,6 @@ input.onchange = async () => {
 
     for (let file of fileData) {
         const fileList = [];
-        const option = new Option(file.name, file.path);
-        selectBox.appendChild(option);
         fileList.push(file.path);
         statusBox.innerHTML = "adding; ${file.name} to dropdown box.";
     }
