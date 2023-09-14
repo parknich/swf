@@ -13,7 +13,8 @@ function populateSelect() {
     const fileList = [];
     for (let file of fileData) {
         fileList.push(file.path);
-        option = new Option(file.name, file.path)
+        option = new Option(file.name, file.path);
+        selectBox.appendChild(option)
         statusBox.value = "adding; ${file.name} to dropdown box.";
     }
 };
