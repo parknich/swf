@@ -1,3 +1,4 @@
+document.getElementById("status").innerHTML = "js ran"
 const response = await fetch(
     "https://api.github.com/repos/parknich/swf/contents/swf/"
 );
@@ -9,12 +10,12 @@ const textarea = document.getElementById("textareaBox");
 statusBox.innerHTML = "running JS";
 
 
-input.onchange = async () => {
+async => {
     selectBox.innerHTML = "select game";
-    folder = "/swf/";
 
     for (let file of fileData) {
         const fileList = [];
+
         fileList.push(file.path);
         statusBox.innerHTML = "adding; ${file.name} to dropdown box.";
     }
