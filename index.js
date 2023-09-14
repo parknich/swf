@@ -18,6 +18,7 @@ function populateSelect() {
         statusBox.value = "adding; ${file.name} to dropdown box.";
     }
 };
+populateSelect();
 let swf;
 selectBox.onchange = () => {
     textarea.value = fileList[selectBox.value];
