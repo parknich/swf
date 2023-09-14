@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <title>Ruffle Dynamic Player</title>
-  <script src="https://raw.githubusercontent.com/parknich/parknich.github.io/main/libs/ruffle/ruffle.js" defer></script>
   <script src="index.js" defer></script>
 </head>
 
 <body>
   <br />
-  <select></select>
+  <select id="selectBox">select game. [running js]</select>
   <br />
   <textarea></textarea>
   <button id="submit">submit</button>
+  <br />
   <div id="container">Ruffle not loaded.</div>
-  <textarea id="status" name="status" rows="2" cols="20" disabled>
-  </textarea>
+  <textarea id="status" name="status" rows="2" cols="20" disabled> </textarea>
   <style>
     * {
       margin: 0;
@@ -28,4 +28,5 @@
     }
   </style>
 </body>
+
 </html>
