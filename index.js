@@ -1,4 +1,4 @@
-document.getElementById("status").innerHTML = "js ran"
+document.getElementById("status").value = "js ran"
 const response = await fetch(
     "https://api.github.com/repos/parknich/swf/contents/swf/"
 );
@@ -7,17 +7,14 @@ const statusBox = document.getElementById("status");
 const submitButton = document.getElementById("submit");
 const selectBox = document.getElementById("selectBox");
 const textarea = document.getElementById("textareaBox");
-statusBox.innerHTML = "running JS";
-
-
+statusBox.value = "running JS";
 async => {
-    selectBox.innerHTML = "select game";
-
+    selectBox.value = "select game";
+    const fileList = [];
     for (let file of fileData) {
-        const fileList = [];
-
         fileList.push(file.path);
-        statusBox.innerHTML = "adding; ${file.name} to dropdown box.";
+        option = new Option(file.name, file.path)
+        statusBox.value = "adding; ${file.name} to dropdown box.";
     }
 };
 let swf;
@@ -27,5 +24,5 @@ selectBox.onchange = () => {
 };
 
 submitButton.onclick = () => {
-    statusBox.innerHTML = "button clicked"
+    statusBox.value = "button clicked"
 };
