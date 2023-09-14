@@ -1,75 +1,65 @@
+const response = await fetch(
+  "https://api.github.com/repos/parknich/swf/contents/"
+);
+const fileData = await response.json();
+const statusBox = document.getElementById("status");
+const submitButton = document.getElementById("submit");
+const [input, select, textarea, reader] = [
+  document.querySelector("input[type=file]"),
+  document.querySelector("select"),
+  document.querySelector("textarea"),
+  new FileReader(),
+];
 
 function createParam(name, value) {
-    const param = document.createElement('param');
-    param.setAttribute('name', name);
-    param.setAttribute('value', value);
-    return param;
+  const param = document.createElement("param");
+  param.setAttribute("name", name);
+  param.setAttribute("value", value);
+  return param;
 }
-const [input, select, textarea, reader] = [
-    document.querySelector("input[type=file]")
-    , document.querySelector("select")
-    , document.querySelector("textarea")
-    , new FileReader
-];
-let [files, data, fn] = [
-    [],
-    [], (file, reader) => new Promise((resolve, reject) => {
-        reader.onload = () => {
-            reader.onload = reader.onerror = null;
-            resolve(reader.result);
-        }
-        reader.onerror = reject;
-        reader.readAsText(file);
-    })
-];
-
-
 
 function fillGame1(swf) {
-    const urlParams = new URLSearchParams(window.location.search);
-    const defaultSWF = '../swf/ruffled.swf';
-    const data = urlParams.get('swf') || swf;
-    const game = document.createElement('object');
-    game.setAttribute('data', data);
-    game.setAttribute('type', 'application/x-shockwave-flash');
-    game.setAttribute('width', '100%');
-    game.setAttribute('height', '90%');
-    game.appendChild(createParam('wmode', 'direct'));
-    game.appendChild(createParam('allowscriptaccess', 'always'));
-    game.appendChild(createParam('allowfullscreen', 'true'));
-    game.appendChild(createParam('allowfullscreeninteractive', 'true'));
-    game.appendChild(createParam('allownetworkingmode', 'all'));
-    document.body.appendChild(game);
-};
+  const urlParams = new URLSearchParams(window.location.search);
+  const defaultSWF = "../swf/ruffled.swf";
+  const urlData = urlParams.get("swf") || swf;
+  const game = document.createElement("object");
+  game.setAttribute("data", urlData);
+  game.setAttribute("type", "application/x-shockwave-flash");
+  game.setAttribute("width", "100%");
+  game.setAttribute("height", "90%");
+  game.appendChild(createParam("wmode", "direct"));
+  game.appendChild(createParam("allowscriptaccess", "always"));
+  game.appendChild(createParam("allowfullscreen", "true"));
+  game.appendChild(createParam("allowfullscreeninteractive", "true"));
+  game.appendChild(createParam("allownetworkingmode", "all"));
+  document.body.appendChild(game);
+}
 function fillGame(swf) {
-    let ruffle = window.RufflePlayer = window.RufflePlayer || {};
-    let player = ruffle.createPlayer();
-    let container = document.getElementById("container");
-    container.appendChild(player);
-    player.load(swf);
-};
+  let ruffle = (window.RufflePlayer = window.RufflePlayer || {});
+  let player = ruffle.createPlayer();
+  let container = document.getElementById("container");
+  container.appendChild(player);
+  player.load(swf);
+}
+
 input.onchange = async () => {
-    select.innerHTML = "";
-    files.length = data.length = 0;
-    folder = "/swf/"
-    const submitButton = document.getElementById("submit");
-    for (const file of folder) {
-        const {
-            name
-        } = file;
-        const option = new Option(name, files.length);
-        files.push(file);
-        select.appendChild(option);
-        let fileList = await fn(file, reader);
-        data.push(fileList);
-    }
+  select.innerHTML = "";
+  folder = "/swf/";
+
+  for (let file of fileData) {
+    const fileList = [];
+    const option = new Option(file.name, file.path);
+    select.appendChild(option);
+    data.push(fileData);
+    status.innerHTML = "adding; ${file.name} to dropdown box.";
+  }
 };
 let swf;
 select.onchange = () => {
-    textarea.value = data[select.value];
-    swf = data[select.value] 
+  textarea.value = data[select.value];
+  swf = data[select.value];
 };
 
 submitButton.onclick = () => {
-    fillGame(swf)
-}
+  fillGame(swf);
+};
