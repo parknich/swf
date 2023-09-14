@@ -42,7 +42,7 @@ function fillGame(swf) {
 }
 
 input.onchange = async () => {
-    select.innerHTML = "";
+    select.innerHTML = "select game";
     folder = "/swf/";
 
     for (let file of fileData) {
