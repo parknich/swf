@@ -22,8 +22,8 @@ input.onchange = async () => {
 };
 let swf;
 selectBox.onchange = () => {
-    textarea.value = data[selectBox.value];
-    swf = data[selectBox.value];
+    textarea.value = fileList[selectBox.value];
+    swf = fileList[selectBox.value];
 };
 
 submitButton.onclick = () => {
